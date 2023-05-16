@@ -15,7 +15,7 @@ router = APIRouter(prefix='/contacts', tags=["contacts"])
 @router.get("/all", response_model=List[ContactResponse])
 async def read_contacts(skip: int = 0, limit: int = 100, db: Session = Depends(get_db),
                      current_contact: User = Depends(auth_service.get_current_contact)):
-    contacts = await repository_contacts.get_contact(skip, limit, db, current_contact)
+    contacts = await repository_contacts.get_contacts(skip, limit, db, current_contact)
     return contacts
 
 
